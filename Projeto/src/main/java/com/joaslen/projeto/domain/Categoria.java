@@ -12,11 +12,13 @@ import javax.persistence.Id;
 public class Categoria implements Serializable {
 	
 	
-	private static final long serialVersionUID = 1L; 
+	
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	private String nome;
 
@@ -24,21 +26,25 @@ public class Categoria implements Serializable {
 	public Categoria() {}
 
 
-	public Categoria(int id, String nome) {
+
+	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 
 	public String getNome() {
@@ -46,19 +52,28 @@ public class Categoria implements Serializable {
 	}
 
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
+
 	@Override
-	public boolean equals(Object obj) {  //para comparar um objeto com outro, no caso vamos identificar pelo ID
+	public int hashCode() {
+		return Objects.hash(id, nome);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -66,10 +81,11 @@ public class Categoria implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		return id == other.id;
+		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
-	
-	
+
+
+
 	
 	
 }
