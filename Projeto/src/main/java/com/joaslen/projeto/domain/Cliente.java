@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.joaslen.projeto.domain.enums.TipoCliente;
 
 @Entity
@@ -33,13 +36,19 @@ public class Cliente  implements Serializable {
 	
 	private Integer tipo;
 	
-	@OneToMany(mappedBy="cliente")
+	@JsonIgnoreProperties("cliente")
+	@JsonManagedReference    	// posso puxar os enderecos do cliente
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name= "TELEFONE")
 	private Set<String> telefones = new HashSet<>();            // nao pode ter repetição por isso o set
 
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedido = new ArrayList<>();
+	
+	
 	public Cliente(){}
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
@@ -106,7 +115,14 @@ public class Cliente  implements Serializable {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+	public List<Pedido> getPedido() {
+		return pedido;
+	}
 
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
