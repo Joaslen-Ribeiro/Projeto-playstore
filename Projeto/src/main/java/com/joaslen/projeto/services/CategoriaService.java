@@ -3,14 +3,21 @@ package com.joaslen.projeto.services;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.joaslen.projeto.domain.Categoria;
 import com.joaslen.projeto.repositories.CategoriaRepository;
+import com.joaslen.projeto.services.services.exception.DataIntegrityException;
 import com.joaslen.projeto.services.services.exception.ObjectNotFoundException;
+
 
 @Service
 public class CategoriaService {
@@ -34,6 +41,24 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repository.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+		repository.deleteById(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível deletar, pois exitem outros elementos associados!");
+		}
+		}
+	public List<Categoria> findAll(){
+		return repository.findAll();
+	}
+	
+	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repository.findAll(pageRequest);
 	}
 	
 }
