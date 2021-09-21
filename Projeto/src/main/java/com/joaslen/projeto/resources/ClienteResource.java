@@ -12,9 +12,9 @@ import com.joaslen.projeto.domain.Cliente;
 
 import com.joaslen.projeto.services.ClienteService;
 
-	@RestController
-	@RequestMapping("/clientes")
-	public class ClienteResource {
+@RestController
+@RequestMapping("/clientes")
+public class ClienteResource {
 		
 		@Autowired
 		private ClienteService service;

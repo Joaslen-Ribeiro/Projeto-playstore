@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +27,7 @@ public class Pedido implements Serializable {
 		
 		private Date instante;
 		
+		
 		@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido" )
 		private Pagamento pagamento;
 		
@@ -34,9 +36,11 @@ public class Pedido implements Serializable {
 		@JoinColumn(name= "endereco_entrega_id")
 		private Endereco enderecoEntrega;
 		
+		
 		@ManyToOne
 		@JoinColumn(name="cliente_id")
 		private Cliente cliente;
+		
 		
 		@OneToMany(mappedBy="id.pedido")
 		private Set<ItemPedido> itens = new HashSet<>();
