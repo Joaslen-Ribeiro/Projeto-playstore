@@ -2,20 +2,22 @@ package com.joaslen.projeto.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.joaslen.projeto.domain.enums.EstadoPagamento;
 
 
 @Entity
-public class PagamentoCartao extends Pagamento {
+@JsonTypeName("pagamentoComCartao")
+public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
 	private Integer numeroDeParcelas;
 	
 	
-	public PagamentoCartao() {}
+	public PagamentoComCartao() {}
 
 
-	public PagamentoCartao(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Integer numeroDeParcelas) {
+	public PagamentoComCartao(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Integer numeroDeParcelas) {
 		super(id, estadoPagamento, pedido);
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
