@@ -11,7 +11,9 @@ import com.joaslen.projeto.domain.Categoria;
 public class CategoriaDTO  implements Serializable {
 	private static final long serialVersionUID = 1L;    
 
+	
 	private Integer id;
+	
 	
 	@NotEmpty(message="preenchimento obrigatório")
 	@Length(min = 5, max=80, message="O tamanho deve sem entre 5 e 80 caracteres")

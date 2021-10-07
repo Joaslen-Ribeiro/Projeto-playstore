@@ -13,7 +13,6 @@ import com.joaslen.projeto.domain.Categoria;
 import com.joaslen.projeto.domain.Pedido;
 import com.joaslen.projeto.domain.Produto;
 import com.joaslen.projeto.repositories.CategoriaRepository;
-import com.joaslen.projeto.repositories.PedidoRepository;
 import com.joaslen.projeto.repositories.ProdutoRepository;
 import com.joaslen.projeto.services.services.exception.ObjectNotFoundException;
 
@@ -30,8 +29,6 @@ public class ProdutoService {
 
 	public Produto find(Integer id) {
 		Optional<Produto> obj = repository.findById(id);
-
-		
 		return obj.orElseThrow(()-> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: "+ id + ", Tipo: "+ Pedido.class.getName()));
 }

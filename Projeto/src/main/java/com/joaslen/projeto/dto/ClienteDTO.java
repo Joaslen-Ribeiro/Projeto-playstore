@@ -14,7 +14,9 @@ import com.joaslen.projeto.services.validation.ClienteUpdate;
 public class ClienteDTO  implements Serializable {
 	private static final long serialVersionUID = 1L;   
 	
+	
 	private Integer id;
+	
 	
 	@NotEmpty(message= "Preenchimento obrigatório")
 	@Length(min= 4, max= 80, message="O nome deve ter entre 4 e 80 caracteres" )

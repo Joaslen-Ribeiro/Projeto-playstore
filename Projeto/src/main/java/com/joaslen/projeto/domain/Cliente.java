@@ -30,14 +30,19 @@ public class Cliente  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	
 	private String nome;
+	
 	
 	@Column(unique=true)
 	private String email;
 	
+	
 	private String cpfOuCnpj;
 	
+	
 	private Integer tipo;
+	
 	
 	@JsonIgnoreProperties("cliente")
 	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)

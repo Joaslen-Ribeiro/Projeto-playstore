@@ -27,7 +27,9 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	
 	private String nome;
+	
 	
 	private double preco;
 	

@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.joaslen.projeto.domain.Produto;
-
 import com.joaslen.projeto.dto.ProdutoDTO;
 import com.joaslen.projeto.resources.utils.URL;
-
 import com.joaslen.projeto.services.ProdutoService;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping(value="/produtos")
 public class ProdutoResource {
 	
 	@Autowired
